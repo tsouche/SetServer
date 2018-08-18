@@ -1,0 +1,13 @@
+version: '3'
+volumes:
+    set_data:
+services:
+    set-db:
+        image: mongo:4.0.1
+        ports:
+            - "27017:27017"
+    set-app:
+        build: ./app
+        ports:
+            - "8080:8080"
+

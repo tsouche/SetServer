@@ -1,0 +1,18 @@
+#
+#  Here are the CLI commands to build the set python application and run the corresponding docker independantly.
+#
+# BEWARE: it will only work if there is a MongoDB server running in the backend, unprotected, so that the python
+#         application will be ale to connect to the DB.
+#
+# This script is purely for information. The proper way to start the application is to use the docker-compose.yml
+# script in the root directory of the project.
+#
+
+# starts a mondoDB server in the background
+docker run -d mongo:4.0.1
+
+# build the image, and name it "set-app"
+docker build -t set-app .
+
+# from this image, run the application in the background, exposing the web server port 8080
+docker run -d -p 8080:8080 set-app

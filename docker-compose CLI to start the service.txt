@@ -1,0 +1,8 @@
+#
+# This file gives an example of the CLI command needed to start the Set server and expose the APIs.
+#
+
+# Blooody straightforward:
+
+docker-compose up
+

@@ -1,13 +1,18 @@
 version: '3'
 volumes:
-    set_data:
+  set-data:
 services:
-    set-db:
-        image: mongo:4.0.1
-        ports:
-            - "27017:27017"
-    set-app:
-        build: ./app
-        ports:
-            - "8080:8080"
-
+  set-db:
+    image: mongo:4.0.1
+    ports:
+      - "27017:27017"
+    network:
+      - set-net
+  set-app:
+    build: ./app
+    ports:
+      - "8080:8080"
+    network:
+      - set-net
+network:
+  set-net:

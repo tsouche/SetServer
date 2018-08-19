@@ -13,7 +13,7 @@ ENV LC_ALL="C.UTF-8"
 
 
 # -- Install Pipenv:
-RUN apt update && apt install python3-pip git -y && pip3 install pipenv
+RUN apt-get update && apt-get install python3-pip git -y && pip3 install pipenv
 
 # -- Install Application into container (including pipfiles):
 RUN mkdir /app

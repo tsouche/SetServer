@@ -15,8 +15,8 @@ from players import Players
 
 class Backend():
     """
-    This class 'runs' the backend, as it powers the web server described in
-    'setserver.py'. Its methods enabled to:
+    This class 'runs' the backend, i.e. the business logics to power the web
+    server described in 'setserver.py'. Its methods enabled to:
     - welcome the front requests for games and players (one called by the web 
         server)
     - initiate as per need new games (calling on the Game class)

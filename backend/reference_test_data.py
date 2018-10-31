@@ -2,6 +2,13 @@
 Created on Dec 27, 2016
 
 @author: thierry
+
+This module enable to build test data which are to run end-to-end tests on the Set server:
+    - test players (data from refPlayers_Dict)
+    - test games (data from refGames_Dict)
+This data set can be used to provision new players, and run games in a controlled way, 
+checking on the results as the games roll on.
+
 '''
 
 from bson.objectid import ObjectId

@@ -1,0 +1,21 @@
+# Test the "Players" module
+
+Files in this directory are used to test the Players module.
+
+Prerequisites:
+  - python3 must be installed (sudo apt-get python3)
+  - pip3 must be installed (sudo apt-get install python3-pip)
+  - pipenv must be installed (pip3 install pipenv)
+
+To execute all automated tests, run the following commands from 
+within this directory:
+
+$ pipenv install
+$ pipenv shell
+(test_common_crypto)$ python3 -m unittest test_common_crypto.py
+(test_common_crypto)$ exit
+$ pipenv clean
+
+
+
+

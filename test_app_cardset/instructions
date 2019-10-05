@@ -1,0 +1,18 @@
+# Test the "Cardset" module
+
+Files in this directory are used to test the Cardset module.
+
+Prerequisites:
+  - python3 must be installed (sudo apt-get python3)
+  - pip3 must be installed (sudo apt-get install python3-pip)
+  - pipenv must be installed (pip3 install pipenv)
+
+To execute all automated tests, run the following commands from 
+within this directory:
+
+$ cd /projects/SetServer/test_app_cardset
+$ pipenv install
+$ pipenv shell
+(test_app_cardset)$ python3 -m unittest test_app_cardset.py
+(test_app_cardset)$ exit
+$ pipenv clean

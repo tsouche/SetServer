@@ -1,0 +1,31 @@
+# Test the "Cardset" module
+
+FROM ubuntu:18.04 as set_app_dev
+
+# -- Configuration variables
+
+ENV LC_ALL="C.UTF-8"
+
+# -- Install Pipenv:
+RUN apt-get update && apt-get install python3-pip git -y && pip3 install pipenv
+
+# -- Install Application into container (including pipfiles):
+RUN mkdir /app
+WORKDIR /app
+# copy source files:
+#     utils.py
+#     cardset.py
+#     test_cardset.py
+#     reference_test_data.py (required by test_cardset.py)
+
+COPY . /app
+
+# -- Install dependencies:
+RUN pipenv install
+#RUN pipenv install --deploy --system
+
+# -- expose the server port
+EXPOSE $PORT
+
+# -- Launches the server
+# ENTRYPOINT ["python3 -m unittest test_cardset.py"]  -  NON VALIDE

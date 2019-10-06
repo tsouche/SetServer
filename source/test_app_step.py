@@ -5,13 +5,10 @@ Created on August 5th 2016
 
 import unittest
 
-from step import Step
+from app_step import Step
 from reference_test_data import refGames_Dict
-from test_utils import vprint, vbar
-from test_ref_data_utils import stepDict_to_Step, refSteps, refCardsets
-from test_ref_data_utils import step_equality, stepDict_equality
-from test_app_cardset import 
-from , refSetsAndPlayers
+from test_utils import vprint, vbar, refCardsets, refSetsAndPlayers, stepDict_to_Step
+from test_utils import refSteps, step_equality, stepDict_equality
 
 
 class test_Step(unittest.TestCase):

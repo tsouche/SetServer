@@ -10,6 +10,8 @@ unit test modules.
 from bson.objectid import ObjectId
 from reference_test_data import refGames_Dict
 from app_cardset import CardSet
+from app_step import Step
+
 
 """
 Set verbose = True enable to capture many comments during unitary testing.
@@ -148,8 +150,6 @@ def refSteps():
     Populate a reference 'list of lists of Steps', from the reference 'list of
     lists of Step dictionaries'. 
     """
-    from step import Step
-    
     steps_list_of_lists = []
     for i in range(0,2):
         # get the list of dictionaries
@@ -316,10 +316,6 @@ def gameRef_compliant(game, index, tab="    "):
     This function returns True if the two games show the same generic details,
     the same players, the same cardsets and the same steps.
     """
-    
-    # loads the reference Cardset
-    from test_cardset import refCardsets
-    
     # loads the relevant reference data
     temp_dict = refGameHeader_Finished()[index]
     generic2 = {'gameID': ObjectId(temp_dict['gameID']),

@@ -6,14 +6,14 @@ Prerequisites:
   - python3 must be installed (sudo apt-get python3)
   - pip3 must be installed (sudo apt-get install python3-pip)
   - pipenv must be installed (pip3 install pipenv)
+  - the 'mongod' service is running, listening to the port 27017
 
 To execute all automated tests, run the following commands from 
 within this directory:
 
 $ pipenv install
 $ pipenv shell
-(test_players)$ docker run mongo &
-(test_players)$ python3 -m unittest test_players.py
+(test_players)$ python3 -m unittest test_app_players.py
 (test_players)$ exit
 $ pipenv clean
 

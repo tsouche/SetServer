@@ -6,13 +6,12 @@ Created on Dec 27, 2016
 
 import unittest
 
-import common
-
+from shared import oidIsValid, isPlayerIDValid
 from reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
 from test_utils import vbar, vprint
 from shared_db import getPlayersColl
 
-class test_common(unittest.TestCase):
+class test_shared(unittest.TestCase):
     """
     This class unit-test the shared functions declared in the 'constants' 
     module.
@@ -49,7 +48,7 @@ class test_common(unittest.TestCase):
         recognized as valid ObjectIds, and that other strings are not.
         """
         vbar()
-        print("Test constants.oidIsValid")
+        print("Test shared.oidIsValid")
         vbar()
         # check that playerIDs are tested ok (in both formats)
         vprint("We check that playerIDs for all reference test players are recognized:")
@@ -74,12 +73,12 @@ class test_common(unittest.TestCase):
         
     def test_isPlayerIDValid(self):
         """
-        Test constants.isPlayerIDValid
+        Test shared.isPlayerIDValid
         """
         # setup the test data
         players = self.setUp()
         vbar()
-        print("Test constants.isPlayerIDValid")
+        print("Test shared.isPlayerIDValid")
         vbar()
         vprint("We test the validity of several playerIDs and compare the result with")
         vprint("the reference test data:")

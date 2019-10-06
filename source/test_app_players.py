@@ -9,9 +9,9 @@ import unittest
 from test_utils import vprint, vbar
 from reference_test_data import refPlayers_Dict, refPlayers
 from test_ref_data_utils import playersDict_equality
-from utils_mongo_server import getPlayersColl
+from shared_db import getPlayersColl
 
-from players import Players
+from app_players import Players
 
 
 def player_format_DB(p):

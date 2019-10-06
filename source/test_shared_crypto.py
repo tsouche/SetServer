@@ -9,10 +9,10 @@ import unittest
 from reference_test_data import refPlayers, refPlayers_Dict
 from test_utils import vbar, vprint
 
-from common_crypto import encryptPassword, checkPassword
-from common_mongo_server import getPlayersColl
+from shared_crypto import encryptPassword, checkPassword
+from shared_db import getPlayersColl
 
-class test_common_crypto(unittest.TestCase):
+class test_shared_crypto(unittest.TestCase):
     """
     This class unit-test the shared functions declared in the 'constants' 
     module.
@@ -45,7 +45,7 @@ class test_common_crypto(unittest.TestCase):
 
     def test_encryptPassword(self):
         vbar()
-        print("Test constants.encryptPassword")
+        print("Test shared_crypto.encryptPassword")
         vbar()
         # produce a hash for all reference players and check the verification is ok
         vprint("We create a new hash for all reference players and check the outcome:")
@@ -56,7 +56,7 @@ class test_common_crypto(unittest.TestCase):
 
     def test_checkPassword(self):
         vbar()
-        print("Test constants.checkPassword")
+        print("Test shared_crypto.checkPassword")
         vbar()
         vprint("We check that all reference test player's (password + hash) is ok")
         for pp in refPlayers_Dict():

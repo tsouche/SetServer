@@ -11,10 +11,6 @@ from reference_test_data import refGames_Dict
 from test_utils import vprint, vbar, cardsList, refCardSets
 
 
-# Initialize the reference test data
-
-
-
 # Define the unit tests
 
 class test_CardSet(unittest.TestCase):

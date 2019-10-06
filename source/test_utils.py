@@ -9,6 +9,7 @@ unit test modules.
 
 from bson.objectid import ObjectId
 from reference_test_data import refGames_Dict
+from app_cardset import CardSet
 
 """
 Set verbose = True enable to capture many comments during unitary testing.

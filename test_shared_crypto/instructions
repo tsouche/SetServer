@@ -1,6 +1,6 @@
-# Test the "Players" module
+# Test the "shared_crypto" module
 
-Files in this directory are used to test the Players module.
+Files in this directory are used to test the shared_crypto module.
 
 Prerequisites:
   - python3 must be installed (sudo apt-get python3)
@@ -12,8 +12,8 @@ within this directory:
 
 $ pipenv install
 $ pipenv shell
-(test_common_crypto)$ python3 -m unittest test_common_crypto.py
-(test_common_crypto)$ exit
+(test_shared_crypto)$ python3 -m unittest test_shared_crypto.py
+(test_shared_crypto)$ exit
 $ pipenv clean
 
 

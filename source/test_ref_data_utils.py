@@ -8,7 +8,7 @@ unit test modules.
 
 from bson.objectid import ObjectId
 from reference_test_data import refGames_Dict
-from test_utils import vprint, vbar, cardsList
+from test_utils import vprint, vbar, cardsList, refCardsets
 
 
 def refSetsAndPlayers():

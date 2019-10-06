@@ -3,12 +3,15 @@ volumes:
   set-data:
 services:
   set-db:
-    image: mongo:4.0.1
+    image: mongo
     ports:
       - "27017:27017"
+    volumes:
+      - ".:/data"
     networks:
       - set-net
   set-app:
+    image: tsouche/SetServer:app_players
     build: ./app
     ports:
       - "8080:8080"

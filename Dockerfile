@@ -1,4 +1,5 @@
-FROM ubuntu:18.04 as set_app_dev
+# Use an official Python runtime as a parent image
+FROM python:latest
 
 # -- Configuration variables
 
@@ -9,7 +10,6 @@ ENV PORT="8080"
 
 ENV LC_ALL="C.UTF-8"
 ENV LC_ALL="C.UTF-8"
-
 
 
 # -- Install Pipenv:

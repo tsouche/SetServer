@@ -4,11 +4,16 @@ Created on August 2nd 2016
 '''
 
 import unittest
+#import logging
 
 from app_cardset import CardSet
 from shared import cardsMax
 from reference_test_data import refGames_Dict
 from test_utils import vprint, vbar, cardsList, refCardsets
+
+
+# Initialize the log configuration
+#logging.basicConfig(filename='test_app_carset.log',level=logging.DEBUG)
 
 
 # Define the unit tests

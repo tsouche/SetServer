@@ -6,9 +6,8 @@ Created on August 8th 2016
 from bson.objectid import ObjectId
 import unittest
 
-from test_utils import vprint, vbar
+from test_utils import vprint, vbar, playersDict_equality
 from reference_test_data import refPlayers_Dict, refPlayers
-from test_ref_data_utils import playersDict_equality
 from shared_db import getPlayersColl
 
 from app_players import Players

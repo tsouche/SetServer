@@ -1,0 +1,20 @@
+version: '3'
+volumes:
+  set-data:
+networks:
+  set-net:
+services:
+  set-test_db:
+    image: mongo:4.0
+    volumes:
+      - set-data
+    ports:
+      - "27017-27019"
+    networks:
+      - set-net
+  test-cardset:
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - set-net

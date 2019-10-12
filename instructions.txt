@@ -1,0 +1,12 @@
+Instruction to use MongoDB in a docker container, and work with it.
+
+# get the image of a recent version of MongoDB
+docker pull mongo:4.2 
+
+# deploy the image
+docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.2
+
+# execute bash from within the container:
+docker exec -it mongodb bash
+
+Once you are in the 

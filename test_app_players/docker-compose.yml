@@ -5,15 +5,15 @@ networks:
   set-net:
 services:
   set-db:
-    image: mongo:4.0.1
+    image: mongo:4.2
     volumes:
       - set-data
     ports:
-      - "27017:27017"
+      - "27017-27019"
     networks:
       - set-net
-  set-app:
-    build: ./app
+  set-server:
+    build: .
     ports:
       - "8080:8080"
     networks:

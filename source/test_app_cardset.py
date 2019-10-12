@@ -8,11 +8,7 @@ import unittest
 from app_cardset import CardSet
 from shared import cardsMax
 from reference_test_data import refGames_Dict
-from test_utils import vprint, vbar, cardsList, refCardSets
-
-
-# Initialize the reference test data
-
+from test_utils import vprint, vbar, cardsList, refCardsets
 
 
 # Define the unit tests

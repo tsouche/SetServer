@@ -51,6 +51,7 @@ class Backend():
         getPlayersColl().drop()
         # connect to the games collection and empty it
         getGamesColl().drop()
+        # voluntarily, we do NOT empty the log collection
         # initialize again all generic variables
         self.games = []
         self.players = Players()

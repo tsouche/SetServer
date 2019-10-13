@@ -4,17 +4,11 @@ Created on August 2nd 2016
 '''
 
 import unittest
-#import logging
 
 from app_cardset import CardSet
 from shared import cardsMax
 from reference_test_data import refGames_Dict
 from test_utils import vprint, vbar, cardsList, refCardsets
-
-
-# Initialize the log configuration
-#logging.basicConfig(filename='test_app_carset.log',level=logging.DEBUG)
-
 
 # Define the unit tests
 
@@ -51,7 +45,7 @@ class test_CardSet(unittest.TestCase):
         vprint(cards_ref[2].displayCardList(cardsList(cardsMax), 6,"    "))
         # runs the test
         vbar()
-        print("Test cardset.__init__")
+        vprint("Test cardset.__init__", True)
         vbar()
         vprint("Newly generated cardset should be equal to Cardset 2:")
         cards_test = self.setup()[2]
@@ -69,7 +63,7 @@ class test_CardSet(unittest.TestCase):
         cards_ref = self.setup()
         # runs the test
         vbar()
-        print("Test cardset.getCardsCode")
+        vprint("Test cardset.getCardsCode", True)
         vbar()
         vprint("We will compare card codes for various cards in Cardset 1 and 2:")
         vprint("From Cardset 1:")
@@ -97,7 +91,7 @@ class test_CardSet(unittest.TestCase):
         cards_ref = self.setup()
         # runs the test
         vbar()
-        print("Test cardset.randomize")
+        vprint("Test cardset.randomize", True)
         vbar()
         # test switching cards on a not randomized game
         vprint("Here is the Cardset not yet randomized (12 cards displayed only):")
@@ -133,7 +127,7 @@ class test_CardSet(unittest.TestCase):
         cards_ref = self.setup()
         # runs the test
         vbar()
-        print("Test cardset.setIsValid")
+        vprint("Test cardset.setIsValid", True)
         vbar()
         # detect set in randomized cards
         vprint("From Cardset 1:")
@@ -160,7 +154,7 @@ class test_CardSet(unittest.TestCase):
         cards_ref = self.setup()
         # runs the test
         vbar()
-        print("Test cardset.validSetExists")
+        vprint("Test cardset.validSetExists", True)
         vbar()
         vprint("We test the existence of a valid Set of 3 cards in a list of cards.")
         cardslist = [0,1,2,3,4,5,6,7,8,9,10,11]
@@ -184,7 +178,7 @@ class test_CardSet(unittest.TestCase):
         cards_ref = self.setup()
         # runs the test
         vbar()
-        print("Test cardset.serialize")
+        vprint("Test cardset.serialize", True)
         vbar()
         dict_test_0 = cards_ref[0].serialize()
         dict_test_1 = cards_ref[1].serialize()
@@ -207,7 +201,7 @@ class test_CardSet(unittest.TestCase):
         cards_test.append(CardSet())
         # runs the test
         vbar()
-        print("Test cardset.deserialize")
+        vprint("Test cardset.deserialize", True)
         vbar()
         vprint("We compare cardsets created from reference dictionaries with reference")
         vprint("cardsets.")

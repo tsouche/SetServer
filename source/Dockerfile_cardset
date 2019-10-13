@@ -1,0 +1,26 @@
+FROM python:3.6
+
+#ENV LC_ALL="C.UTF-8"
+
+# This python image already includes pip
+
+# -- create the working directory in the container:
+RUN mkdir /app
+WORKDIR /app
+
+# -- install the dependencies
+COPY requirements_cardset.txt /app
+RUN pip install -r requirements_cardset.txt
+
+# -- copy the app files in the container's working directory
+COPY app_cardset.py shared.py shared_db.py /app/
+COPY reference_test_data.py test_app_cardset.py test_utils.py /app/
+
+# -- check what is in the container's working directory
+RUN ls -al /app
+
+# -- expose the server port
+#EXPOSE 8080
+
+# -- Launches the server
+ENTRYPOINT ["python","-u","-m","unittest","test_app_cardset.py"]

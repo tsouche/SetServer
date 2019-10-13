@@ -8,22 +8,18 @@ unit test modules.
 
 
 from bson.objectid import ObjectId
-#import logging
 
 from reference_test_data import refGames_Dict
 from app_cardset import CardSet
 from shared_db import writeLogToDB
 
-"""
-Set verbose = True enable to capture many comments during unitary testing.
-Set verbose = False does not produce the comments.
-"""
-verbose = True
-
 # logging functions (for tests)
 
-def vprint(arg="\n"):
-    if verbose:
+verbose = True
+# Set verbose = True enable rich logging, False = no logging
+
+def vprint(arg="\n", forced = False):
+    if verbose or forced:
         print(arg, flush=True)
         writeLogToDB({'Info': arg})
 

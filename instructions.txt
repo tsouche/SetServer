@@ -1,12 +1,38 @@
-Instruction to use MongoDB in a docker container, and work with it.
+***********************************************************
+Instructions to run automated tests:
+***********************************************************
 
-# get the image of a recent version of MongoDB
-docker pull mongo:4.2 
 
-# deploy the image
-docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.2
 
-# execute bash from within the container:
-docker exec -it mongodb bash
+Testing the 'Cardset' module:
 
-Once you are in the 
+- need the related source files:
+    ./source/app_cardset.py
+    ./source/shared.py
+    ./source/shared_db.py
+
+- need the related test files:
+    ./source/reference_test_data.py
+    ./source/test_app_cardset.py
+    ./source/test_utils.py
+
+- need the build and dependencies declaration file:
+    ./docker-compose_cardset
+    ./source/Dockerfile_cardset
+    ./source/requirements_cardset.txt
+
+- need a mongo db running (with no access restriction)
+
+Manage the docker-compose services by running the following commands from
+the top directory (currently: /projects/SetServer):
+    $ docker-compose -f docker-compose_cardset.yml build
+    $ docker-compose -f docker-compose_cardset.yml up
+    $ docker-compose -f docker-compose_cardset.yml down
+and clean all images/containers to start with a fresh configurtion with the
+following command:
+    $ docker system prune -a
+
+
+The docker-compose file named "Dockerfile_cardset":
+    - creates a db service, pulling an official mongo image (prefer version
+      4.2), using a volume called

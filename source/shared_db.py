@@ -12,14 +12,14 @@ from pymongo import MongoClient
 # server parameters: address and mode (test/production)
 
 production = False
-mongoserver_prod_address = '127.0.0.1'
+mongoserver_prod_address = 'localhost'
 mongoserver_prod_port = 27017
 mongoserver_prod_DB = 'set_game'
-mongoserver_test_address = '0.0.0.0'
+mongoserver_test_address = 'localhost'
 mongoserver_test_port = 27017
 mongoserver_test_DB = 'set_game_test'
 
-mongo_username = 'db_admin_tes'
+mongo_username = 'db_admin_test'
 mongo_password = 'db_passwd_test'
 
 players_collection = 'players'
@@ -29,7 +29,10 @@ log_collection = 'logs'
 # generic methods to access the relevant collections in the Mongo database
 
 def getSetDB():
+    # The following line is used if we restrict the access to the mongo db
+    # with credentials (which must appear in the mongo URI).
     mongo_URI_prefix = "mongodb://{}:{}@".format(mongo_username, mongo_password)
+    #mongo_URI_prefix = "mongodb://"
     if production:
         mongo_URI = "{}{}:{}".format(mongo_URI_prefix, mongoserver_prod_address, mongoserver_prod_port)
         database = mongoserver_prod_DB
@@ -38,7 +41,7 @@ def getSetDB():
         database = mongoserver_test_DB
     print("HELLO: mongo URI = '{}'".format(mongo_URI))
     db = MongoClient(mongo_URI)[database]
-    print("HELLO: type of DB is '{}'".format(type(db)))
+    #print("HELLO: type of DB is '{}'".format(type(db)))
     return db
 
 def getPlayersColl():
@@ -51,8 +54,8 @@ def getGamesColl():
 
 def getLogColl():
     setDB = getSetDB()
-    print("HELLO: setDB type is '{}'".format(type(setDB)))
-    print("HELLO: setDB.log_collection type is '{}'".format(type(setDB[log_collection])))
+    #print("HELLO: setDB type is '{}'".format(type(setDB)))
+    #print("HELLO: setDB.log_collection type is '{}'".format(type(setDB[log_collection])))
     return setDB[log_collection]
 
 def writeLogToDB(log_info):

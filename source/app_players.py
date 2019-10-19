@@ -6,8 +6,8 @@ Created on August 8th 2016
 from bson.objectid import ObjectId
 from pymongo import ReturnDocument
 
-from shared import oidIsValid, isPlayerIDValid
-from shared_db import getPlayersColl
+from app_shared import oidIsValid, isPlayerIDValid
+from app_shared_db import getPlayersColl
 
 
 """

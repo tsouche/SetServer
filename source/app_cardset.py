@@ -4,7 +4,7 @@ Created on August 2nd 2016
 '''
 
 from random import randint
-from shared import cardsMax
+from app_shared import cardsMax
 
 class CardSet:
     """

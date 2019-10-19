@@ -19,8 +19,8 @@ mongoserver_test_address = 'localhost'
 mongoserver_test_port = 27017
 mongoserver_test_DB = 'set_game_test'
 
-mongo_username = 'db_admin_test'
-mongo_password = 'db_passwd_test'
+#mongo_username = 'db_admin_test'
+#mongo_password = 'db_passwd_test'
 
 players_collection = 'players'
 games_collection = 'games'
@@ -31,17 +31,16 @@ log_collection = 'logs'
 def getSetDB():
     # The following line is used if we restrict the access to the mongo db
     # with credentials (which must appear in the mongo URI).
-    mongo_URI_prefix = "mongodb://{}:{}@".format(mongo_username, mongo_password)
-    #mongo_URI_prefix = "mongodb://"
+    #mongo_URI_prefix = "mongodb://{}:{}@".format(mongo_username, mongo_password)
+    mongo_URI_prefix = "mongodb://"
     if production:
         mongo_URI = "{}{}:{}".format(mongo_URI_prefix, mongoserver_prod_address, mongoserver_prod_port)
         database = mongoserver_prod_DB
     else:
         mongo_URI = "{}{}:{}".format(mongo_URI_prefix, mongoserver_test_address, mongoserver_test_port)
         database = mongoserver_test_DB
-    print("HELLO: mongo URI = '{}'".format(mongo_URI))
+    #print("HELLO: mongo URI = '{}'".format(mongo_URI))
     db = MongoClient(mongo_URI)[database]
-    #print("HELLO: type of DB is '{}'".format(type(db)))
     return db
 
 def getPlayersColl():
@@ -54,13 +53,9 @@ def getGamesColl():
 
 def getLogColl():
     setDB = getSetDB()
-    #print("HELLO: setDB type is '{}'".format(type(setDB)))
-    #print("HELLO: setDB.log_collection type is '{}'".format(type(setDB[log_collection])))
     return setDB[log_collection]
 
-def writeLogToDB(log_info):
+def writeLogToDB(log):
     logColl = getLogColl()
-    id = logColl.insert_one({'Info': log_info}).inserted_id
-    print("Log ID = ",id)
-
-
+    id = logColl.insert_one(log).inserted_id
+    #print("Log ID = ",id)

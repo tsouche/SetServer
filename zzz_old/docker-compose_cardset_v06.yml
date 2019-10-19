@@ -1,0 +1,27 @@
+version: "3.7"
+
+volumes:
+  db-data:
+
+networks:
+  backend:
+
+services:
+
+  db:
+    image: mongo:4.2
+    volumes:
+      - db-data
+    ports:
+      - "27017-27019:27017-27019"
+    networks:
+      - backend
+
+  cardset:
+    build:
+      context: ./source
+      dockerfile: Dockerfile_cardset
+    networks:
+      - backend
+    depends_on:
+      - db

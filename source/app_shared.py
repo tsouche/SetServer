@@ -8,7 +8,7 @@ several modules in the backend application.
 '''
 
 from bson.objectid import ObjectId
-from shared_db import getPlayersColl
+from app_shared_db import getPlayersColl
 
 
 # parameters indicating the number of cards for the game

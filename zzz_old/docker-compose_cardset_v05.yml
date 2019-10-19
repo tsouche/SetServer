@@ -1,0 +1,31 @@
+version: "3.7"
+
+volumes:
+  data:
+
+networks:
+  backend:
+
+services:
+
+  db:
+    image: mongo:4.2
+    environment:
+      MONGO_INITDB_DATABASE: 'set_game_test'
+      MONGO_INITDB_ROOT_USERNAME: 'db_admin_test'
+      MONGO_INITDB_ROOT_PASSWORD: 'db_passwd_test'
+    volumes:
+      - data
+    ports:
+      - "127.0.0.1:27017-27019:27017-27019"
+    networks:
+      - backend
+
+  cardset:
+    build:
+      context: ./source
+      dockerfile: Dockerfile_cardset
+    networks:
+      - backend
+    depends_on:
+      - db

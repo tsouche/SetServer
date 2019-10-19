@@ -14,7 +14,7 @@ services:
   cardset:
     build:
       context: .
-      dockerfile: ./test/cardset_Dockerfile
+      dockerfile: ./test/players_Dockerfile
     network_mode: "host"
     depends_on:
       - db

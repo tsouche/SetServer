@@ -6,8 +6,8 @@ Created on August 2nd 2016
 import unittest
 
 from app_cardset import CardSet
-from shared import cardsMax
-from reference_test_data import refGames_Dict
+from app_shared import cardsMax
+from test_reference_data import refGames_Dict
 from test_utils import vprint, vbar, cardsList, refCardsets
 
 # Define the unit tests

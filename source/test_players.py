@@ -7,8 +7,8 @@ from bson.objectid import ObjectId
 import unittest
 
 from test_utils import vprint, vbar, playersDict_equality
-from reference_test_data import refPlayers_Dict, refPlayers
-from shared_db import getPlayersColl
+from test_reference_data import refPlayers_Dict, refPlayers
+from app_shared_db import getPlayersColl
 
 from app_players import Players
 

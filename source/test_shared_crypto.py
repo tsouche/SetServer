@@ -6,18 +6,18 @@ Created on Dec 27, 2016
 
 import unittest
 
-from reference_test_data import refPlayers, refPlayers_Dict
+from app_reference_test_data import refPlayers, refPlayers_Dict
 from test_utils import vbar, vprint
 
-from shared_crypto import encryptPassword, checkPassword
-from shared_db import getPlayersColl
+from app_shared_crypto import encryptPassword, checkPassword
+from app_shared_db import getPlayersColl
 
 class test_shared_crypto(unittest.TestCase):
     """
     This class unit-test the shared functions declared in the 'constants' 
     module.
     """
-    
+
     def setUp(self, gameIDNone = True):
         # Connection to the MongoDB server / players collection
         playersColl = getPlayersColl()

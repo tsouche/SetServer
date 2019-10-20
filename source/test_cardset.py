@@ -7,7 +7,7 @@ import unittest
 
 from app_cardset import CardSet
 from app_shared import cardsMax
-from test_reference_data import refGames_Dict
+from app_reference_test_data import refGames_Dict
 from test_utils import vprint, vbar, cardsList, refCardsets
 
 # Define the unit tests
@@ -22,10 +22,10 @@ class test_CardSet(unittest.TestCase):
     def setup(self):
         # initializes test data = create 3 cardsets
         return refCardsets()
-    
+
     def teardown(self):
         pass
-    
+
     def test__init__(self):
         """
         Test the __init__ method
@@ -82,7 +82,7 @@ class test_CardSet(unittest.TestCase):
         self.assertEqual(cards_ref[2].getCardCode(61), "2021")
         # end of the test
         self.teardown()
-        
+
     def test_randomize(self):
         """
         Test the randomize method
@@ -118,7 +118,7 @@ class test_CardSet(unittest.TestCase):
         self.assertTrue(average < 5.0)
         # end of the test
         self.teardown()
-        
+
     def test_setIsValid(self):
         """
         Test the setIsValid method
@@ -145,7 +145,7 @@ class test_CardSet(unittest.TestCase):
         self.assertFalse(cards_ref[2].setIsValid(0,4,9))
         # end of the test
         self.teardown()
-        
+
     def test_validSetExists(self):
         """
         Test the validSetExists method
@@ -169,7 +169,7 @@ class test_CardSet(unittest.TestCase):
         self.assertFalse(cards_ref[2].validSetExist(cardslist))
         # end of the test
         self.teardown()
-        
+
     def test_serialize(self):
         """
         Test the serialize method
@@ -189,7 +189,7 @@ class test_CardSet(unittest.TestCase):
         self.assertEqual(refGames_Dict()[1]['cardset'], dict_test_1)
         # end of the test
         self.teardown()
-        
+
     def test_deserialize(self):
         """
         Test the deserialize method
@@ -220,9 +220,8 @@ class test_CardSet(unittest.TestCase):
         
         # end of the test
         self.teardown()
-        
 
-    
+
 if __name__ == '__main__':
 
     unittest.main()

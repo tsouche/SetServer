@@ -7,13 +7,13 @@ from bson.objectid import ObjectId
 import requests
 import unittest
 
-from constants import setserver_routes, getPlayersColl, getGamesColl
-from reference_test_data import refPlayers_Dict, refPlayers, refGames_Dict
+from app_shared import setserver_routes, getPlayersColl, getGamesColl
+from app_reference_test_data import refPlayers_Dict, refPlayers, refGames_Dict
 
-from test_utilities import vbar, vprint, cardsetDict_equality, stepDict_equality, gameRef_compliant
+from test_utils import vbar, vprint, cardsetDict_equality, stepDict_equality, gameRef_compliant
 
-from game import Game
-from players import Players
+from app_game import Game
+from app_players import Players
 
 
 class test_Setserver(unittest.TestCase):

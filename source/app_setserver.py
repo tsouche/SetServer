@@ -6,7 +6,7 @@ Created on August 11th 2016
 from bottle import Bottle, request, run
 from bson.objectid import ObjectId
 
-from shared import oidIsValid
+from app_shared import oidIsValid
 
 from app_backend import Backend
 

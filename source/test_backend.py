@@ -6,13 +6,13 @@ Created on Sep 2, 2016
 from bson.objectid import ObjectId
 import unittest
 
-from constants import getGamesColl, getPlayersColl
-from reference_test_data import refPlayers, refGames_Dict
+from app_shared_db import getGamesColl, getPlayersColl
+from app_reference_test_data import refPlayers, refGames_Dict
 
-from test_utilities import vbar, vprint, cardsetDict_equality, stepDict_equality, gameRef_compliant, game_compliant
+from test_utils import vbar, vprint, cardsetDict_equality, stepDict_equality, gameRef_compliant, game_compliant
 
-from game import Game
-from backend import Backend
+from app_game import Game
+from app_backend import Backend
 
 from test_game import gameSetupAndProgress
 
@@ -93,7 +93,7 @@ class test_Backend(unittest.TestCase):
             answer = backend.isNicknameAvailable(pp['nickname'])
             self.assertEqual(answer['status'], "ko")
             vprint("    > " + pp['nickname'] + " is not available anymore")
-    
+
     def test_getPlayerLoginDetail(self):
         """
         Test backend.getPlayerLoginDetail
@@ -124,7 +124,7 @@ class test_Backend(unittest.TestCase):
             self.assertEqual(answer['nickname'], str(pp['nickname']))
             self.assertEqual(answer['passwordHash'], str(pp['passwordHash']))
             vprint("    > " + pp['nickname'] + ": player is recognized and compliant")
-    
+
     def test_registerPlayer(self):
         """
         Test backend.registerPlayer
@@ -150,7 +150,7 @@ class test_Backend(unittest.TestCase):
                    " - " + result['reason'])
             self.assertEqual(result['status'], "ko")
             self.assertEqual(result['reason'], "invalid nickname")
-        
+
     def test_enlistPlayer(self):
         """
         Test backend.enlistPlayer
@@ -329,7 +329,7 @@ class test_Backend(unittest.TestCase):
             result = backend.games[0].getPlayer(pp['playerID'])
             self.assertEqual(result['status'], "ko")
             vprint("    > " + pp['nickname'] + ": was delisted but is still registered")
-    
+
     def test_deRegisterPlayer(self):
         """
         Test backend.deRegisterPlayer
@@ -375,7 +375,7 @@ class test_Backend(unittest.TestCase):
             result = backend.games[0].getPlayer(pp['playerID'])
             self.assertEqual(result['status'], "ko")
             vprint("    > " + pp['nickname'] + ": was de-registered")
-    
+
     def test_getGameID(self):
         """
         Test backend.getGameID
@@ -561,7 +561,7 @@ class test_Backend(unittest.TestCase):
         vprint("    - reason = " + result['reason'])
         self.assertEqual(result['status'], "ko")
         self.assertEqual(result['reason'], "invalid GameID")
-        
+
     def test_getDetails(self):
         """
         tests backend.getDetails 
@@ -658,7 +658,7 @@ class test_Backend(unittest.TestCase):
         self.assertEqual(result['reason'], "invalid gameID")
         vprint("     > status = " + result['status'])
         vprint("     > reason = " + result['reason'])
-        
+
     def test_getGameFinished(self):
         """
         tests backend.getGameFinished 
@@ -691,7 +691,7 @@ class test_Backend(unittest.TestCase):
         self.assertEqual(result['reason'], "invalid gameID")
         vprint("     > status = " + result['status'])
         vprint("     > reason = " + result['reason'])
-        
+
     def test_getStep(self):
         """
         Test backend.getStep
@@ -850,7 +850,7 @@ class test_Backend(unittest.TestCase):
             self.assertEqual(pp_test['totalScore'], 0)
             self.assertEqual(pp_test['gameID'], None)
             vprint("    - registered successfully " + pp_ref['nickname'])
-        
+
     def test_ForTestOnly_EnlistRefPlayers(self):
         """
         Test backend.ForTestOnly_EnlistRefPlayers
@@ -872,7 +872,7 @@ class test_Backend(unittest.TestCase):
 
     def test_ForTestOnly_DelistAllPlayers(self):
         pass
-    
+
     def test_ForTestOnly_LoadRefGame(self):
         """
         Test backend.ForTestOnly_LoadRefGame
@@ -914,7 +914,7 @@ class test_Backend(unittest.TestCase):
             vprint("  > Index " + str(test_data_index) + ": " + str(result))
             self.assertTrue(result)
 
-            
+
 if __name__ == "__main__":
 
     unittest.main()

@@ -5,10 +5,10 @@ Created on Sep 2, 2016
 
 from bson.objectid import ObjectId
 
-from shared import playersMin, playersMax, tableMax
-from shared import pointsPerStep, oidIsValid, isPlayerIDValid
-from shared_db import getPlayersColl, getGamesColl
-from reference_test_data import refPlayers, refGames_Dict
+from app_shared import playersMin, playersMax, tableMax
+from app_shared import pointsPerStep, oidIsValid, isPlayerIDValid
+from app_shared_db import getPlayersColl, getGamesColl
+from app_reference_test_data import refPlayers, refGames_Dict
 
 from app_game import Game
 from app_players import Players
@@ -230,7 +230,7 @@ class Backend():
             result = {'status': "ko", 'reason': "unknown playerID"}
         # in any case, the server returns 'result'
         return result
-        
+
     def enlistTeam(self, list_playerID):
         """
         This function enable to enlist multiple players in one time into the 
@@ -285,7 +285,7 @@ class Backend():
             return {'status': "ok", 'gameID': gameID}
         else:
             return {'status': "ko"}
-    
+
     def delistPlayer(self, playerID):
         """
         This function enable to delist a player from the database and also from
@@ -307,7 +307,7 @@ class Backend():
         else:
             result = answer
         return result
-    
+
     def getGameID(self, playerID):
         """
         This method returns the gameID if the player exist and is part of a 
@@ -324,7 +324,7 @@ class Backend():
         else:
             result = {'status': "ko", 'reason': "invalid playerID"}
         return result
-            
+
     def getNicknames(self, playerID):
         """
         This function gives back the names of all the players which are part of
@@ -344,7 +344,7 @@ class Backend():
                     nickname = self.players.getNickname(pID)['nickname']
                     list_names.append({'nickname': nickname})
         return list_names
-        
+
     def stopGame(self, gameID, hard = False):
         """
         This function stops a game and de-registers the players who were part of this
@@ -378,7 +378,7 @@ class Backend():
             result = {'status': "ko", 'reason': "invalid GameID"}
         # end of the 'stop' method
         return result
-            
+
     def getDetails(self,gameID):
         """
         The server will answer the clients when they ask about the generic 
@@ -438,7 +438,7 @@ class Backend():
         else:
             result = answer
         return result
-    
+
     def getGameFinished(self, gameID):
         """
         The server will return the gameFinished flag of the game if it exist.
@@ -457,7 +457,7 @@ class Backend():
         else:
             result = answer
         return result
-        
+
     def getStep(self,gameID):
         """
         The server will answer the clients when they ask about the status of the 
@@ -486,7 +486,7 @@ class Backend():
         else:
             result = {'status': "ko", 'reason': "invalid gameID"}
         return result
-    
+
     def getHistory(self,gameID):
         """
         The server will answer the clients when they ask about the full history
@@ -638,7 +638,7 @@ class Backend():
         # delist all the players by overwriting the gameID field with 'None'.
         modified = self.playersColl.update_many({}, {'$set': {'gameID': None}})
         return modified.modified_count
-    
+
     def ForTestOnly_LoadRefGame(self, test_data_index):
         """
         FOR TEST PURPOSE ONLY.
@@ -662,7 +662,7 @@ class Backend():
         else:
             result = {'status': "ko", 'reason': "wrong test_data_index"}
         return result
-    
+
     def ForTestOnly_GetBackToTurn(self, test_data_index, target_turn):
         """
         FOR TEST PURPOSE ONLY.
@@ -706,5 +706,3 @@ class Backend():
         else:
             result = {'status': "ko"}
         return result
-    
-    

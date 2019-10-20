@@ -6,20 +6,19 @@ Created on Dec 27, 2016
 
 import unittest
 
-import common_web_server
-from reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
+from app_reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
 from test_utils import vbar, vprint
 
-from common import oidIsValid, isPlayerIDValid
-from common_crypto import encryptPassword, checkPassword
-from common_mongo_server import getPlayersColl
+from app_shared import oidIsValid, isPlayerIDValid
+from app_shared_crypto import encryptPassword, checkPassword
+from app_shared_db import getPlayersColl
 
 class test_common(unittest.TestCase):
     """
     This class unit-test the shared functions declared in the 'constants' 
     module.
     """
-    
+
     def setUp(self, gameIDNone = True):
         # Connection to the MongoDB server / players collection
         playersColl = getPlayersColl()
@@ -73,7 +72,7 @@ class test_common(unittest.TestCase):
             self.assertFalse(oidIsValid(pp))
             vprint("    > " + pp + " is not recognized")        
         # end of the test
-        
+
     def test_encryptPassword(self):
         vbar()
         print("Test constants.encryptPassword")
@@ -131,7 +130,7 @@ class test_common(unittest.TestCase):
             self.assertFalse(result)
         # end of the test
         self.teardown(players)
-        
+
     def test_setserver_routes(self):
         """
         Test constants.isPlayerIDValid
@@ -149,4 +148,4 @@ class test_common(unittest.TestCase):
             self.assertEqual(prefix_long + prefix_short + path, setserver_routes(verb, True))
             self.assertEqual(prefix_long + prefix_short + path, setserver_routes(verb))
             vprint("    > check '" + verb.rjust(25) + "' <=> '" + path.ljust(30) + "': it is compliant")
-        
+

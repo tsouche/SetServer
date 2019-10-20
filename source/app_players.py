@@ -36,7 +36,7 @@ class Players:
         the access to the server or the DB, but to enable the client to 
         properly log in a player.
     """
-        
+
     def __init__(self):
         """
         Links with the relevant collection in the Mongo database.
@@ -46,7 +46,7 @@ class Players:
         """
         self.context = CryptContext(schemes=[encryption_algorithm])
         """
-        
+
     def getPlayerID(self, nickname):
         pp = self.playersColl.find_one({'nickname': nickname})
         if pp != None:
@@ -69,7 +69,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid playerID"}
         return result
-    
+
     def getHash(self, playerID):
         """
         This method enable a client to retrieve the password hash, so that it 
@@ -85,7 +85,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid playerID"}
         return result
-        
+
     def getGameID(self, playerID):
         """
         This method returns:
@@ -102,7 +102,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid playerID"}
         return result
-            
+
     def getPlayer(self, playerID):
         """
         If playerID is valid, this method return a dictionary with all player's 
@@ -125,7 +125,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid playerID"}
         return result
-    
+
     def getPlayers(self):
         """
         This method return the whole list of players, under the form:
@@ -159,7 +159,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid playerID"}
         return result
-        
+
     def isPlayerAvailableToPlay(self, playerID):
         """
         This method checks that the playerID is valid (ie. it is a valid 
@@ -195,7 +195,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "nickname already used"}
         return result
-    
+
     def register(self, nickname, passwordHash):
         """
         This method enable to create a new player in the DB with a unique 
@@ -222,7 +222,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid nickname"}
         return result
-    
+
     def deRegister(self, playerID):
         """
         This method check that the playerID exists, and if so removes it from 
@@ -237,7 +237,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid playerID"}
         return result
-        
+
     def enlist(self, playerID, gameID):
         """
         This method receives two ObjectId. If they are valid playerID and 
@@ -258,7 +258,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid playerID"}
         return result
-    
+
     def delist(self, playerID):
         """
         This method de-enlist the player from any game he would be part of
@@ -291,7 +291,7 @@ class Players:
                 {"$set": {'gameID': None}})
             result = modified.modified_count
         return result
-    
+
     def inGame(self, gameID):
         """
         This method returns a list of player's playerIDs (ObjectID) who are part 
@@ -314,7 +314,7 @@ class Players:
         else:
             result = {'status': "ko", 'reason': "invalid gameID"}
         return result
-        
+
     def updateTotalScore(self, playerID, points):
         """
         This method increments the player's totalScore with 'points'.
@@ -326,7 +326,7 @@ class Players:
                 {'$inc': {'totalScore': points}})
             result = (modified.modified_count == 1)
         return result
-    
+
     def serialize(self):
         """
         This method returns a dictionary representing the registered players.
@@ -345,7 +345,7 @@ class Players:
             playerDict['gameID'] = str(pp['gameID'])
             playersDict['players'].append(playerDict)
         return playersDict
-    
+
     def deserialize(self, objDict):
         """
         This method parses the Dictionary passed as argument, and if valid,
@@ -369,5 +369,3 @@ class Players:
                     self.playersColl.insert_one(temp)
                 resultOk = True
         return resultOk
-    
-    

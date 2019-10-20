@@ -5,8 +5,8 @@ Created on August 8th 2016
 
 from bson.objectid import ObjectId
 
-from shared import pointsPerStep, isPlayerIDValid
-from shared_db import getGamesColl
+from app_shared import pointsPerStep, isPlayerIDValid
+from app_shared_db import getGamesColl
 from app_cardset import CardSet
 from app_step import Step
 
@@ -14,7 +14,7 @@ from app_step import Step
 class invalidPlayerID(Exception):
     """Base class for exceptions in this module."""
     pass
-    
+
 class Game:
     """
     This class runs a complete game:
@@ -31,7 +31,7 @@ class Game:
         - stop the game if it is instructed to do so
         - save the game history in a JSON file with all 
     """
-    
+
     def __init__(self, players):
         """
         Initializes the cards set, the first Step and the players list.
@@ -90,13 +90,13 @@ class Game:
         This method returns the gameID.
         """
         return self.gameID
-    
+
     def getGameFinished(self):
         """
         This method returns gameFinished.
         """
         return self.gameFinished
-        
+
     def getPoints(self):
         """
         This method is useful to give the points collected during the game back
@@ -117,7 +117,7 @@ class Game:
         """
         This method returns the details of a player if he is enlisted on the 
         game.
-        
+
         Possible answers are:
             { 'status': "ok", 'playerID': ObjectId, 'nickname': str,
               'passwordHash': str, 'points': int }
@@ -134,7 +134,7 @@ class Game:
         if unknown:
             result = {'status': "ko", 'reason': "unknown playerID"}
         return result
-        
+
     def delistPlayer(self, playerID):
         """
         This method removes a player from the game if he was enlisted.
@@ -160,11 +160,11 @@ class Game:
         positions on the Table at this moment of the game, and check whether it 
         is a valid Set.
         If so, the next Step is generated.
-        
+
         The value returned is:
             True if the set was valid and taken into account
             False if not (for any reason)
-        
+
         NB: playerID is assumed to be a valid ObjectId identifier. We choose to 
         identify the player from his ID because such a 'set proposal' should 
         come from a distant front (an app, a web portal...) which should 
@@ -200,7 +200,7 @@ class Game:
                     self.gameFinished = True
         # indicate if the proposed set is valid
         return valid
-    
+
     def serialize(self):
         objDict = {}
         objDict["__class__"] = "SetGame"

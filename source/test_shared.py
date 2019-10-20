@@ -6,10 +6,10 @@ Created on Dec 27, 2016
 
 import unittest
 
-from shared import oidIsValid, isPlayerIDValid
-from reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
+from app_shared import oidIsValid, isPlayerIDValid
+from app_reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
+from app_shared_db import getPlayersColl
 from test_utils import vbar, vprint
-from shared_db import getPlayersColl
 
 class test_shared(unittest.TestCase):
     """
@@ -70,7 +70,7 @@ class test_shared(unittest.TestCase):
             self.assertFalse(oidIsValid(pp))
             vprint("    > " + pp + " is not recognized")        
         # end of the test
-        
+
     def test_isPlayerIDValid(self):
         """
         Test shared.isPlayerIDValid

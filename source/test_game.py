@@ -8,13 +8,15 @@ from bson.objectid import ObjectId
 import unittest
 
 
-from constants import getPlayersColl
-from reference_test_data import refPlayers, refGames_Dict
-from game import Game, invalidPlayerID
-from players import Players
+from app_shared_db import getPlayersColl
+from app_reference_test_data import refPlayers, refGames_Dict
+from app_game import Game, invalidPlayerID
+from app_players import Players
 
-from test_utilities import vprint, vbar, cardset_equality, step_equality, stepDict_equality, refCardsets, refSteps
-from test_utilities import gameRef_compliant, refGameHeader_start, refGameHeader_Finished
+from test_utils import vprint, vbar, cardset_equality, step_equality
+from test_utils import  stepDict_equality, refCardsets, refSteps
+from test_utils import gameRef_compliant, refGameHeader_start
+from test_utils import refGameHeader_Finished
 
 
 def getValidSetFromTable(game):
@@ -80,7 +82,7 @@ def gameSetup(test_data_index):
         partie.steps[0].start(partie.cards)
         # The game is ready to start.
         return partie
-    
+
 def gameProgress(game, test_data_index):
     """
     Takes the game in a current status, and make it progress with one step
@@ -102,7 +104,7 @@ def gameProgress(game, test_data_index):
         else:
             next_playerID = ObjectId(step_dict['playerID'])
         game.receiveSetProposal(next_playerID, next_set)
-        
+
 def gameSetupAndProgress(test_data_index, nbTurns):
     """
     Initialize a game from test data, using the 'setup' method, and
@@ -116,7 +118,7 @@ def gameSetupAndProgress(test_data_index, nbTurns):
         gameProgress(partie, test_data_index)
     # gives the game back in a controlled state
     return partie
-        
+
 
 class test_Game(unittest.TestCase):
     """
@@ -124,7 +126,7 @@ class test_Game(unittest.TestCase):
     The setup method will load test data in the database, and the teardown 
     method will clean the database.
     """
-    
+
     def setup(self, test_data_index):
         """
         Initialize a game from test data: the 'test_data_index' (0 or 1) points
@@ -136,7 +138,7 @@ class test_Game(unittest.TestCase):
         data available from 'refSteps'.
         """
         return gameSetup(test_data_index)
-    
+
     def setupAndProgress(self, test_data_index, nbTurns):
         """
         Initialize a game from test data, using the 'setup' method, and
@@ -144,7 +146,7 @@ class test_Game(unittest.TestCase):
         test data.
         """
         return gameSetupAndProgress(test_data_index, nbTurns)
-        
+
     def teardown(self):
         pass
 
@@ -366,7 +368,7 @@ class test_Game(unittest.TestCase):
                     + " -> compliant: " + str(valid))
             vprint("        Overall: result is compliant: " + str(valid))
             self.assertTrue(valid)
-                             
+
     def test_delistPlayer(self):
         """
         Test game.getPoints
@@ -391,7 +393,7 @@ class test_Game(unittest.TestCase):
             answer = partie.delistPlayer(ObjectId())
             self.assertEqual(answer['status'], "ko")
             vprint("    > we delist an unkown player: it fails")
-            
+
     def test_serialize(self):
         """
         Test game.serialize
@@ -462,7 +464,7 @@ class test_Game(unittest.TestCase):
                 vprint("               steps " + str(i) + ": "+ str(result))
                 self.assertTrue(result)
 
-    
+
 if __name__ == '__main__':
 
     unittest.main()

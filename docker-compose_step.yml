@@ -1,0 +1,20 @@
+version: "3.7"
+
+volumes:
+  db-data:
+
+services:
+
+  db:
+    image: mongo:4.2
+    volumes:
+      - db-data:/projects/SetServer/test_db
+    network_mode: "host"
+
+  cardset:
+    build:
+      context: .
+      dockerfile: ./test/step_Dockerfile
+    network_mode: "host"
+    depends_on:
+      - db

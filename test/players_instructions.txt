@@ -15,6 +15,7 @@ Files:
       ./source/app_shared_db.py
 
   - Related test files:
+      ./source/app_step.py
       ./source/test_reference_data.py
       ./source/test_players.py
       ./source/test_utils.py

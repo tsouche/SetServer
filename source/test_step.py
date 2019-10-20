@@ -7,8 +7,9 @@ import unittest
 
 from app_step import Step
 from app_reference_test_data import refGames_Dict
-from test_utils import vprint, vbar, refCardsets, refSetsAndPlayers, stepDict_to_Step
-from test_utils import refSteps, step_equality, stepDict_equality
+from test_utils import vprint, vbar, refCardsets, refSetsAndPlayers
+from test_utils import stepDict_to_Step, refSteps
+from test_utils import step_equality, stepDict_equality
 
 
 class test_Step(unittest.TestCase):
@@ -186,7 +187,7 @@ class test_Step(unittest.TestCase):
         cardsets_ref = refCardsets()
         stepStarts_ref = self.refStepStarts()
         return [cardsets_ref, stepStarts_ref]
-    
+
     def teardown(self):
         pass
 

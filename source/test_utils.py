@@ -9,6 +9,7 @@ unit test modules.
 
 from bson.objectid import ObjectId
 
+from app_step import Step
 from app_reference_test_data import refGames_Dict
 from app_cardset import CardSet
 from app_shared_db import writeLogToDB
@@ -142,14 +143,13 @@ def stepDict_to_Step(dict_step, step):
     for code in dict_step['set']:
         step.set.append(int(code))
     step.set.sort()
-    
+
 def refSteps():
     """
     Populate a reference 'list of lists of Steps', from the reference 'list of
     lists of Step dictionaries'. 
     """
-    from step import Step
-    
+
     steps_list_of_lists = []
     for i in range(0,2):
         # get the list of dictionaries
@@ -197,7 +197,7 @@ def refGameHeader_Finished():
             'gameFinished': refGames_Dict()[1]['gameFinished'],
             'turnCounter': refGames_Dict()[1]['turnCounter']}
         ] 
-    
+
 def playersDict_equality(players1, players2):
     """
     This function returns True if the two steps contain similar/equivalent data.
@@ -230,7 +230,7 @@ def cardsetDict_equality(cardsetDict1, cardsetDict2):
     for cc_dict in cardsetDict1['cards']:
         equal = equal and (cc_dict in cardsetDict2['cards'])
     return equal
-    
+
 def step_equality(step1, step2):
     """
     This function returns True if the two steps contain similar/equivalent data.
@@ -245,7 +245,7 @@ def step_equality(step1, step2):
     test_equal = test_equal1 and test_equal2 and test_equal3 and test_equal4 \
         and test_equal5 and test_equal6 and test_equal7
     return test_equal
-    
+
 def stepDict_equality(dict1, dict2):
     """
     This function returns True if the two steps contain similar/equivalent data.

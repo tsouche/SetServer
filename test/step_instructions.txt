@@ -1,4 +1,4 @@
-############   Test the "Cardset" module   ############
+############   Test the "Step" module   ############
 
 
 Prerequisites:
@@ -9,28 +9,28 @@ Prerequisites:
 
 Files:
   - Related source files:
-      ./source/app_cardset.py
+      ./source/app_step.py
       ./source/app_shared.py
       ./source/app_shared_db.py
 
   - Related test files:
-      ./source/app_step.py
-      ./source/test_reference_data.py
-      ./source/test_cardset.py
+      ./source/test_step.py
+      ./source/app_cartset.py
+      ./source/app_reference_test_data.py
       ./source/test_utils.py
 
   - Build and dependencies file:
-      ./docker-compose_cardset
-      ./test/cardset_Dockerfile
-      ./test/cardset_requirements.txt
+      ./docker-compose_step
+      ./test/step_Dockerfile
+      ./test/step_requirements.txt
 
 
 Test procedure:
   To execute all automated tests, run the following commands in a teminal:
 
     $ cd /projects/SetServer
-    $ docker-compose -f docker-compose_cardset.yml build
-    $ docker-compose -f docker-compose_cardset.yml up
+    $ docker-compose -f docker-compose_step.yml build
+    $ docker-compose -f docker-compose_step.yml up
 
   Tests results will appear on the screen.
 

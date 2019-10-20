@@ -1,0 +1,29 @@
+FROM python:3.6
+
+# This python image already includes python 3.6.8 and pip
+
+RUN pip install --upgrade pip
+
+# -- create the working directory in the container:
+RUN mkdir /app
+WORKDIR /app
+
+# -- copy the app files in the container's working directory
+COPY ./source/app_shared_crypto.py /app
+
+# -- copy the dependecies in the container's working directory
+COPY ./test/shared_crypto_requirements.txt /app/requirements.txt
+
+# -- copy the test files in the container's working directory
+COPY ./source/test_shared_crypto.py ./source/test_utils.py /app/
+COPY ./source/app_shared.py ./source/app_step.py ./source/app_cardset.py /app/
+COPY ./source/app_reference_test_data.py ./source/app_shared_db.py /app/
+
+# -- check what is in the container's working directory
+RUN ls -al /app
+
+# -- install the dependencies
+RUN pip install -r requirements.txt
+
+# -- Launches the server
+ENTRYPOINT ["python","-u","-m","unittest","test_shared_crypto.py"]

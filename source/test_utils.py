@@ -9,9 +9,9 @@ unit test modules.
 
 from bson.objectid import ObjectId
 
+from app_cardset import CardSet
 from app_step import Step
 from app_reference_test_data import refGames_Dict
-from app_cardset import CardSet
 from app_shared_db import writeLogToDB
 
 # logging functions (for tests)

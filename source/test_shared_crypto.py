@@ -7,10 +7,10 @@ Created on Dec 27, 2016
 import unittest
 
 from app_reference_test_data import refPlayers, refPlayers_Dict
-from test_utils import vbar, vprint
-
 from app_shared_crypto import encryptPassword, checkPassword
 from app_shared_db import getPlayersColl
+from test_utils import vbar, vprint
+
 
 class test_shared_crypto(unittest.TestCase):
     """

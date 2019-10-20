@@ -1,0 +1,59 @@
+############   Test the "Shared Crypto" module   ############
+
+
+Prerequisites:
+  - docker must be installed (version 18.09.7 used here)
+  - docker-compose must be installed (version 1.22.0 used here)
+  - the "python:3.6" docker image (includes python3 and pip)
+
+
+Files:
+  - Related source files:
+      ./source/app_shared_crypto.py
+
+  - Related test files:
+      ./source/test_shared_crypto.py
+      ./source/test_utils.py
+      ./source/app_reference_test_data.py
+      ./source/app_shared.py
+      ./source/app_shared_db.py
+      ./source/app_cardset.py
+      ./source/app_step.py
+
+  - Build and dependencies file:
+      ./docker-compose_shared_crypto
+      ./test/shared_crypto_Dockerfile
+      ./test/shared_crypto_requirements.txt
+
+
+Test procedure:
+  To execute all automated tests, run the following commands in a teminal:
+
+    $ cd /projects/SetServer
+    $ docker-compose -f docker-compose_shared_crypto.yml build
+    $ docker-compose -f docker-compose_shared_crypto.yml up
+
+  Tests results will appear on the screen.
+
+  After running the tests, it is possible to clean all docker images /
+  containers by running the following command:
+
+    $ docker system prune -a
+
+  From another terminal, access the mongo DB to read all the tests logs:
+
+  - Access the mongo container and run a shell inside the container
+
+    $ docker exec -it setserver_db_1 bash
+
+  - From this shell, launch the mongo client:
+
+    root@Ubuntu-thierry:/# mongo
+
+  - and then from the mongo db, read the logs:
+
+    > show dbs
+    > use logs
+    > db.logs.find({})
+
+  and read all the logs.

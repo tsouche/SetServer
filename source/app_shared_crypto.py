@@ -24,7 +24,7 @@ def encryptPassword(password):
     context = CryptContext(schemes=[encryption_algorithm])
     # replaced 'encrypt' (deprecated as of 1.7) with 'hash'
     return context.hash(password)
-    
+
 def checkPassword(password, passwordHash):
     """
     This function decrypts a passwordHash and returns the password.

@@ -21,7 +21,7 @@ class CardSet:
         - a method checks that there is at least one valid 'set' in a subset 
             of cards.
     """
-    
+
     def __init__(self):
         # initiates a sorted card set
         self.cards = []
@@ -82,7 +82,7 @@ class CardSet:
             msg = msg[0 : len(msg)-2]
         msg += "]"
         return msg
-    
+
     def getCardCode(self, i):
         """
         This method return the 4 values (from 0 to 2) describing the color, 
@@ -94,7 +94,7 @@ class CardSet:
             card = self.cards[i]
             code = str(card[0])+str(card[1])+str(card[2])+str(card[3])
         return code
-       
+
     def randomize(self):
         """
         Randomizes the card set, which is supposed to be a valid 81 cards set.
@@ -161,7 +161,7 @@ class CardSet:
                     j += 1
                 i += 1
         return exist
- 
+
     def serialize(self):
         """
         This method return a Dictionary describing the cards in their respective
@@ -178,7 +178,7 @@ class CardSet:
             cardsetDict["cards"].append(msg)
             i += 1
         return cardsetDict
-    
+
     def deserialize(self, objDict):
         """
         This function enable to populate a whole cardset from a Dictionary (if 

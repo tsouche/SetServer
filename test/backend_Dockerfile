@@ -1,0 +1,27 @@
+FROM python:3.6
+
+# This python image already includes python 3.6.8 and pip
+
+RUN pip install --upgrade pip
+
+# -- create the working directory in the container:
+RUN mkdir /app
+WORKDIR /app
+
+# -- copy the app files in the container's working directory
+COPY ./source/app_*.py /app/
+
+# -- copy the dependecies in the container's working directory
+COPY ./test/test_requirements.txt /app/requirements.txt
+
+# -- copy the test files in the container's working directory
+COPY ./source/test_*.py /app/
+
+# -- check what is in the container's working directory
+RUN ls -al /app
+
+# -- install the dependencies
+RUN pip install -r requirements.txt
+
+# -- Launches the server
+ENTRYPOINT ["python","-u","-m","unittest","test_backend.py"]

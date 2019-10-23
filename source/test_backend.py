@@ -6,15 +6,14 @@ Created on Sep 2, 2016
 from bson.objectid import ObjectId
 import unittest
 
+from app_game import Game
+from app_backend import Backend
 from app_shared_db import getGamesColl, getPlayersColl
 from app_reference_test_data import refPlayers, refGames_Dict
 
-from test_utils import vbar, vprint, cardsetDict_equality, stepDict_equality, gameRef_compliant, game_compliant
-
-from app_game import Game
-from app_backend import Backend
-
 from test_game import gameSetupAndProgress
+from test_utils import vbar, vprint, cardsetDict_equality, stepDict_equality
+from test_utils import gameRef_compliant, game_compliant
 
 
 class test_Backend(unittest.TestCase):

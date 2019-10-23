@@ -14,7 +14,7 @@ from app_game import Game, invalidPlayerID
 from app_players import Players
 
 from test_utils import vprint, vbar, cardset_equality, step_equality
-from test_utils import  stepDict_equality, refCardsets, refSteps
+from test_utils import stepDict_equality, refCardsets, refSteps
 from test_utils import gameRef_compliant, refGameHeader_start
 from test_utils import refGameHeader_Finished
 

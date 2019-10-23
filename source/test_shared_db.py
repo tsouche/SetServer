@@ -6,12 +6,12 @@ Created on Dec 27, 2016
 
 import unittest
 
-from app_reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
-from test_utils import vbar, vprint
+from app_shared_db import getPlayersColl
 
 from app_shared import oidIsValid, isPlayerIDValid
 from app_shared_crypto import encryptPassword, checkPassword
-from app_shared_db import getPlayersColl
+from app_reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
+from test_utils import vbar, vprint
 
 class test_common(unittest.TestCase):
     """
@@ -73,32 +73,6 @@ class test_common(unittest.TestCase):
             vprint("    > " + pp + " is not recognized")        
         # end of the test
 
-    def test_encryptPassword(self):
-        vbar()
-        print("Test constants.encryptPassword")
-        vbar()
-        # produce a hash for all reference players and check the verification is ok
-        vprint("We create a new hash for all reference players and check the outcome:")
-        for pp in refPlayers_Dict():
-            new_hash = encryptPassword(pp['password'])
-            self.assertTrue(checkPassword(pp['password'], new_hash))
-            vprint("    > " + pp['nickname'] + "'s new hash is recognized")
-
-    def test_checkPassword(self):
-        vbar()
-        print("Test constants.checkPassword")
-        vbar()
-        vprint("We check that all reference test player's (password + hash) is ok")
-        for pp in refPlayers_Dict():
-            self.assertTrue(checkPassword(pp['password'], pp['passwordHash']))
-            vprint("    > " + pp['nickname'] + ": couple (password + hash) is ok")
-        vprint("We now check that other couples are not ok:")
-        for pp in refPlayers_Dict():
-            for yy in refPlayers():
-                if pp['nickname'] != yy['nickname']:
-                    self.assertFalse(checkPassword(pp['password'], yy['passwordHash']))
-                    vprint("    > " + pp['nickname']+ "'s password and " + yy['nickname'] + "'s hash do not correspond")
-
     def test_isPlayerIDValid(self):
         """
         Test constants.isPlayerIDValid
@@ -130,22 +104,3 @@ class test_common(unittest.TestCase):
             self.assertFalse(result)
         # end of the test
         self.teardown(players)
-
-    def test_setserver_routes(self):
-        """
-        Test constants.isPlayerIDValid
-        """
-        # compare few routes against the expected results
-        vbar()
-        print("Test constants.setserver_routes")
-        vbar()
-        prefix_long  = "http://" + setserver_address + ":" + str(setserver_port)
-        prefix_short = '/' + server_version
-        vprint("We check all expected full and short paths against reference:")
-        for verb in setserver_routes_list:
-            path = setserver_routes_list[verb]
-            self.assertEqual(prefix_short + path, setserver_routes(verb, False))
-            self.assertEqual(prefix_long + prefix_short + path, setserver_routes(verb, True))
-            self.assertEqual(prefix_long + prefix_short + path, setserver_routes(verb))
-            vprint("    > check '" + verb.rjust(25) + "' <=> '" + path.ljust(30) + "': it is compliant")
-

@@ -7,7 +7,8 @@ from bson.objectid import ObjectId
 import requests
 import unittest
 
-from app_shared import setserver_routes, getPlayersColl, getGamesColl
+from app_shared_db import getPlayersColl, getGamesColl
+from app_setserver import setserver_routes
 from app_reference_test_data import refPlayers_Dict, refPlayers, refGames_Dict
 
 from test_utils import vbar, vprint, cardsetDict_equality, stepDict_equality, gameRef_compliant
@@ -27,7 +28,25 @@ class test_Setserver(unittest.TestCase):
     players = Players()
     refPlayers = []
     gameID = None
-    
+
+    def test_setserver_routes(self):
+        """
+        Test constants.isPlayerIDValid
+        """
+        # compare few routes against the expected results
+        vbar()
+        vprint("Test constants.setserver_routes")
+        vbar()
+        prefix_long  = "http://{}:{}".format(setserver_address, setserver_port)
+        prefix_short = "/{}".format(server_version)
+        vprint("We check all expected full and short paths against reference:")
+        for verb in setserver_routes_list:
+            path = setserver_routes_list[verb]
+            self.assertEqual(prefix_short + path, setserver_routes(verb, False))
+            self.assertEqual(prefix_long + prefix_short + path, setserver_routes(verb, True))
+            self.assertEqual(prefix_long + prefix_short + path, setserver_routes(verb))
+            vprint("    > check '{}' <=> '{}': it is compliant".format(verb.rjust(25), path.ljust(30))
+
     def setup_reset(self):
         """
         Reset the server to a clean state
@@ -38,7 +57,7 @@ class test_Setserver(unittest.TestCase):
         was manually started before running this test script, by this shell 
         command:
             python /data/code/setgame/server/serserver.py
-        
+
         Q: How do we start the bottle webserver ?
         A: maybe simply run the shell command:
             'python /data/code/setgame/server/setsetver.py' ?
@@ -1185,8 +1204,8 @@ class test_Setserver(unittest.TestCase):
 
 if __name__ == "__main__":
 
-    #starts the bottle server
-    setserver
+    # starts the bottle server
+    #setserver
     # triggers the tests
     unittest.main()
 

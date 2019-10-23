@@ -24,4 +24,4 @@ RUN ls -al /app
 RUN pip install -r requirements.txt
 
 # -- Launches the server
-ENTRYPOINT ["python","-u","-m","unittest","test_step.py"]
+ENTRYPOINT ["python","-u","-m","unittest","test_shared_db.py"]

@@ -1,0 +1,70 @@
+############   Test all backend tests suits   ############
+
+
+Prerequisites:
+  - docker must be installed (version 18.09.7 used here)
+  - docker-compose must be installed (version 1.22.0 used here)
+  - the "python:3.6" docker image (includes python3 and pip)
+
+
+Files:
+  - Related source files:
+      ./source/app_cardset.py
+      ./source/app_step.py
+      ./source/app_players.py
+      ./source/app_game.py
+      ./source/app_backend.py
+      ./source/app_shared.py
+      ./source/app_shared_db.py
+      ./source/app_shared_crypto.py
+      ./source/app_reference_test_data.py
+
+  - Related test files:
+      ./source/test_cardset.py
+      ./source/test_step.py
+      ./source/test_players.py
+      ./source/test_game.py
+      ./source/test_backend.py
+      ./source/test_shared.py
+      ./source/test_shared_db.py
+      ./source/test_shared_cryto.py
+      ./source/test_utils.py
+      ./source/test_global.py
+
+  - Build and dependencies file:
+      ./docker-compose_global
+      ./test/global_Dockerfile
+      ./test/test_requirements.txt
+
+
+Test procedure:
+  To execute all automated tests, run the following commands in a teminal:
+
+    $ cd /projects/SetServer
+    $ docker-compose -f docker-compose_global.yml build
+    $ docker-compose -f docker-compose_global.yml up
+
+  Tests results will appear on the screen.
+
+  After running the tests, it is possible to clean all docker images /
+  containers by running the following command:
+
+    $ docker system prune -a
+
+  From another terminal, access the mongo DB to read all the tests logs:
+
+  - Access the mongo container and run a shell inside the container
+
+    $ docker exec -it setserver_db_1 bash
+
+  - From this shell, launch the mongo client:
+
+    root@Ubuntu-thierry:/# mongo
+
+  - and then from the mongo db, read the logs:
+
+    > show dbs
+    > use logs
+    > db.logs.find({})
+
+  and read all the logs.

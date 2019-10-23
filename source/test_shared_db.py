@@ -13,7 +13,7 @@ from app_shared_crypto import encryptPassword, checkPassword
 from app_reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
 from test_utils import vbar, vprint
 
-class test_common(unittest.TestCase):
+class test_Shared_DB(unittest.TestCase):
     """
     This class unit-test the shared functions declared in the 'constants' 
     module.
@@ -104,3 +104,10 @@ class test_common(unittest.TestCase):
             self.assertFalse(result)
         # end of the test
         self.teardown(players)
+
+
+
+if __name__ == '__main__':
+
+    unittest.main()
+

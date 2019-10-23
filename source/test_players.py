@@ -26,7 +26,7 @@ def player_format_DB(p):
     p_db['gameID']       = p['gameID']
     return p_db
 
-class TestPlayers(unittest.TestCase):
+class test_Players(unittest.TestCase):
     """
     This class is used to unit-test the Players class.
     The setup method will load test data in the database, and the teardown

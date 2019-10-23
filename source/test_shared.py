@@ -11,7 +11,7 @@ from app_reference_test_data import refPlayers, refPlayers_Dict, refGames_Dict
 from app_shared_db import getPlayersColl
 from test_utils import vbar, vprint
 
-class test_shared(unittest.TestCase):
+class test_Shared(unittest.TestCase):
     """
     This class unit-test the shared functions declared in the 'constants' 
     module.

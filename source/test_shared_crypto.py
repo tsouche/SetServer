@@ -12,7 +12,7 @@ from app_shared_db import getPlayersColl
 from test_utils import vbar, vprint
 
 
-class test_shared_crypto(unittest.TestCase):
+class test_Shared_Crypto(unittest.TestCase):
     """
     This class unit-test the shared functions declared in the 'constants' 
     module.

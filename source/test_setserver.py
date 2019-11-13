@@ -1204,8 +1204,6 @@ class test_Setserver(unittest.TestCase):
 
 if __name__ == "__main__":
 
-    # starts the bottle server
-    #setserver
     # triggers the tests
     unittest.main()
 

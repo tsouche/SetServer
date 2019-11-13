@@ -19,7 +19,7 @@ will have been started with the command line:
 """
 
 # version
-server_version = 'v1.0.0'
+setserver_version = 'v1.0.0'
 
 # address of the web server (exposing the Setgame API)
 setserver_address = 'localhost'
@@ -28,6 +28,7 @@ setserver_port = 8080
 # routes which are declared in the web server
 
 setserver_routes_list = {
+        'default':                  '/',
         'hello':                    '/hello',
         'version':                  '/about',
 
@@ -71,6 +72,22 @@ def setserver_routes(verb, full=True):
     result = prefix + '/' + setserver_routes_list[verb]
     return result
 
+def server_banner():
+    print()
+    print("  #######################################################")
+    print("  #                                                     #")
+    print("  #                   Set Server                        #")
+    print("  #                                                     #")
+    print("  #######################################################")
+    print("  #                                                     #")
+    print("  #   Set game server - version {:<8}                #".format(setserver_version))
+    print("  #                                                     #")
+    print("  #   URL: {:<20}                         #".format(setserver_address))
+    print("  #   Listening on port {:<6}                          #".format(setserver_port))
+    print("  #                                                     #")
+    print("  #######################################################")
+    print()
+
 
 
 if __name__ == "__main__":
@@ -87,6 +104,7 @@ if __name__ == "__main__":
 
 
     # this route is used for checking that the server is up
+    @webserver.route(setserver_routes('default', False))
     @webserver.route(setserver_routes('hello', False))
     def hello():
         return "<p>Hello. The Set game server is active.</p>"
@@ -366,5 +384,6 @@ if __name__ == "__main__":
 
     # Now that all routes where mapped to a function, start the server
     
+    server_banner()
     run(webserver, host=setserver_address, port=setserver_port, 
         reloader=True, debug=True)
